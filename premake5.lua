@@ -331,25 +331,6 @@ dependson {"tlsdll"}
 
 links {"common"}
 
-prebuildcommands {"pushd %{_MAIN_SCRIPT_DIR}", "tools\\premake5 generate-buildinfo", "popd"}
-
-local COMPUTER_NAME = os.getenv('COMPUTERNAME')
-if COMPUTER_NAME == "JOEL-PC" then
-	debugdir "D:\\Games\\PC\\IW4x64"
-	debugcommand "D:\\Games\\PC\\IW4x64\\$(TargetName)$(TargetExt)"
-	postbuildcommands {
-		"copy /y \"$(OutDir)$(TargetName)$(TargetExt)\" \"D:\\Games\\PC\\IW4x64\\$(TargetName)$(TargetExt)\"",
-	}
-end
-
-if _OPTIONS["copy-to"] then
-	postbuildcommands {"copy /y \"$(TargetPath)\" \"" .. _OPTIONS["copy-to"] .. "\""}
-end
-
-if _OPTIONS["debug-dir"] then
-	debugdir ( _OPTIONS["debug-dir"] )
-end
-
 dependencies.imports()
 
 project "tlsdll"

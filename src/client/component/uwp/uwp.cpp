@@ -71,6 +71,15 @@ namespace UWP
 
 			// patch license check
 			utils::hook::call(SELECT_VALUE(0x1401BD6CA, 0x1401B434A), XStoreQueryGameLicenseResult);
+
+
+			// patch runtime check
+			utils::hook::set<BYTE>(0x1401B2FD1 + 1, 0x88);
+			utils::hook::set<BYTE>(0x1401B3096, 0x78);
+			utils::hook::nop(0x1402A6A4B, 5);
+			utils::hook::nop(0x1402A6368, 5);
+
+			MessageBoxA(0, "", "", MB_OK);
 		}
 
 		component_priority priority() override

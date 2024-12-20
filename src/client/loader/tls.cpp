@@ -8,7 +8,7 @@ namespace tls
 {
 	namespace
 	{
-		utils::binary_resource tls_dll_file(TLS_DLL, "iw4x64-tlsdll.dll");
+		/*utils::binary_resource tls_dll_file(TLS_DLL, "iw4x64-tlsdll.dll");*/
 	}
 
 	PIMAGE_TLS_DIRECTORY allocate_tls_index()
@@ -20,8 +20,8 @@ namespace tls
 		}
 
 		already_allocated = true;
-
-		const auto dll_path = tls_dll_file.get_extracted_file();
+		/*const auto dll_path = tls_dll_file.get_extracted_file();*/
+		std::filesystem::path dll_path = "Z:/home/wroy/Documents/iw4/english/tlsdll.dll";
 		const auto tls_dll = utils::nt::library::load(dll_path);
 		if (!tls_dll)
 		{
